@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:water_delivery_app/res/common/account_button.dart';
 import 'package:water_delivery_app/res/common/text_form_field.dart';
@@ -13,6 +14,8 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
+  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  User? user;
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
   bool password = false;
 
@@ -145,32 +148,26 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   child: AccountButton(
                     textName: AppString.Create,
                     accountOnPress: () {
-                      {
-                        if (password == conformrmPassword) {
-                          Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => LoginScreen(),
-                              ),
-                              (route) => false);
-                        } else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              backgroundColor: Colors.white,
-                              elevation: 0,
-                              content: Text(
-                                "Not Match Password...",
-                                style: TextStyle(
-                                  color: Colors.red,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                      if (password == conformrmPassword) {
+                        creatUser();
+                        debugPrint("User ------->> $user");
+                      } else {
+                        //"Password is Not Match";
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            backgroundColor: Colors.white,
+                            elevation: 0,
+                            content: Text(
+                              "Not Match Password...",
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
-                          );
-                        }
+                          ),
+                        );
                       }
-                      ;
                     },
                   ),
                 ),
@@ -212,5 +209,34 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         ),
       )),
     );
+  }
+
+  creatUser() async {
+    try {
+      await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
+      )
+          .then((value) {
+        debugPrint("User ------->> $user");
+
+        user = value.user;
+        debugPrint("Value --> ${value.user}");
+        user!.sendEmailVerification();
+
+        Navigator.pop(context);
+      });
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        debugPrint('The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        debugPrint('The account already exists for that email.');
+      } else if (e.code == 'strong-password') {
+        debugPrint('The Password provided is fully strong');
+      }
+    } catch (e) {
+      debugPrint("Error --->  $e");
+    }
   }
 }

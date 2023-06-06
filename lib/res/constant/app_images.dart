@@ -15,4 +15,7 @@ class AppImages {
 
   //welcome screen
   static const String welcomepage = "${basePath}welcomepage.png";
+
+  //home screen
+  static const String Bottle = "${basePath}bottle.png";
 }

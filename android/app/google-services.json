@@ -1,0 +1,124 @@
+{
+  "project_info": {
+    "project_number": "30766661181",
+    "project_id": "fir-demo-a7f7b",
+    "storage_bucket": "fir-demo-a7f7b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:30766661181:android:32877c98be5920d27af454",
+        "android_client_info": {
+          "package_name": "com.app.firebase_demo_five"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8S84y0_341RgswPCIo4kBCT7gbjXnGT0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:30766661181:android:0291563af1c17e4f7af454",
+        "android_client_info": {
+          "package_name": "com.app.firebase_demo_four"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8S84y0_341RgswPCIo4kBCT7gbjXnGT0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:30766661181:android:fd2a0342c4550c7f7af454",
+        "android_client_info": {
+          "package_name": "com.app.firebase_demo_one"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8S84y0_341RgswPCIo4kBCT7gbjXnGT0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:30766661181:android:b68cd64ebc5a8fb87af454",
+        "android_client_info": {
+          "package_name": "com.app.firebase_demo_three"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8S84y0_341RgswPCIo4kBCT7gbjXnGT0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:30766661181:android:a7a492eee53b93647af454",
+        "android_client_info": {
+          "package_name": "com.app.water_delivery_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8S84y0_341RgswPCIo4kBCT7gbjXnGT0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:30766661181:android:94b30934887449df7af454",
+        "android_client_info": {
+          "package_name": "com.example.firebase_demo_two"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8S84y0_341RgswPCIo4kBCT7gbjXnGT0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
