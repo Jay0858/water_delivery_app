@@ -38,6 +38,7 @@ dependencies:
   smooth_page_indicator: ^1.0.1
   firebase_core: ^2.13.1
   firebase_auth: ^4.6.2
+  pinput: ^2.2.31
 
 
 dev_dependencies:

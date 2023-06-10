@@ -41,6 +41,7 @@ class AppString {
   static const ForgotPassword = "Forgot Password?";
   static const DontHaveanAccount = "Don’t  have an account?";
   static const SignUP = "Sign UP";
+  static const GoogleWithLogin = "Google With Login";
 
   //home screen
   static const Welcome = "Welcome!";

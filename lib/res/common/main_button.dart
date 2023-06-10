@@ -6,7 +6,7 @@ class MainButton extends StatelessWidget {
   final void Function() mainOnPress;
   const MainButton({
     Key? key,
-    required this.textName,
+    this.textName,
     required this.mainOnPress,
   }) : super(key: key);
 

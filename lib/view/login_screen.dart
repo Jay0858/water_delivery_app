@@ -5,6 +5,7 @@ import 'package:water_delivery_app/res/common/text_form_field.dart';
 import 'package:water_delivery_app/res/constant/app_colors.dart';
 import 'package:water_delivery_app/res/constant/app_string.dart';
 import 'package:water_delivery_app/view/home_screen.dart';
+import 'package:water_delivery_app/view/mobile_number_screen.dart';
 import 'package:water_delivery_app/view/registration_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -111,7 +112,23 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
+                // LoginButton(textName: AppString.GoogleWithLogin, createOnPress: createOnPress),
                 SizedBox(height: height / 7),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PhoneNumberScreen(),
+                      ),
+                      (route) => false,
+                    );
+                  },
+                  child: Text(
+                    "LogIn With Mobile",
+                    style: TextStyle(color: AppColors.LightBlue),
+                  ),
+                ),
                 SizedBox(
                   width: double.infinity,
                   height: height / 13,
@@ -206,7 +223,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   color: Colors.black,
                   fontSize: 20,
                   fontWeight: FontWeight.w500,
-                  fontFamily: "Avenir",
                 ),
               ),
             ),
