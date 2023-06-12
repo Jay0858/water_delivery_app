@@ -18,7 +18,7 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
 
   @override
   void initState() {
-// TODO: implement initState
+    // TODO: implement initState
     countryCode.text = "+91";
     super.initState();
   }
@@ -43,23 +43,29 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
           ),
         ),
       ),
-      body: SafeArea(
+      body: Container(
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color(0x9e6ee383),
+              Color(0xFFC3E8CC),
+              Color(0xFFE4EFE5),
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.all(height / 30),
             child: Column(
               children: [
-                SizedBox(height: height / 25),
-                Image.asset(
-                  "assets/images/phoneNumber.png",
-                  height: height / 4,
-                ),
-                SizedBox(height: height / 30),
+                SizedBox(height: height / 10),
                 Text(
                   "Phone Verification",
                   style: TextStyle(
                     fontSize: height / 25,
-                    fontFamily: "Avenir",
                     fontWeight: FontWeight.w800,
                   ),
                 ),
@@ -67,11 +73,10 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                   "We need to register your phone before getting started!",
                   style: TextStyle(
                     fontSize: 20,
-                    fontFamily: "Aveir",
                   ),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: height / 30),
+                SizedBox(height: height / 10),
                 Container(
                   height: height / 14,
                   decoration: BoxDecoration(

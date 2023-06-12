@@ -56,13 +56,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 child: CreateButton(
                   textName: AppString.Create,
                   createOnPress: () {
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => RegistrationScreen(),
-                      ),
-                      (route) => false,
-                    );
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => RegistrationScreen(),
+                        ));
                   },
                 ),
               ),

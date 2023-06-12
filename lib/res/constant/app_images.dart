@@ -18,4 +18,8 @@ class AppImages {
 
   //home screen
   static const String Bottle = "${basePath}bottle.png";
+
+  //log in screen
+  static const String Google = "${basePath}google.png";
+  static const String Git = "${basePath}git.png";
 }

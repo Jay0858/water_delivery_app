@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:water_delivery_app/res/common/account_button.dart';
 import 'package:water_delivery_app/res/common/text_form_field.dart';
 import 'package:water_delivery_app/res/constant/app_colors.dart';
+import 'package:water_delivery_app/res/constant/app_images.dart';
 import 'package:water_delivery_app/res/constant/app_string.dart';
 import 'package:water_delivery_app/view/home_screen.dart';
 import 'package:water_delivery_app/view/mobile_number_screen.dart';
@@ -114,6 +115,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 // LoginButton(textName: AppString.GoogleWithLogin, createOnPress: createOnPress),
                 SizedBox(height: height / 7),
+                InkWell(
+                  child: Image.asset(AppImages.Google),
+                  onTap: () {},
+                ),
                 TextButton(
                   onPressed: () {
                     Navigator.pushAndRemoveUntil(
@@ -189,7 +194,6 @@ class _LoginScreenState extends State<LoginScreen> {
           .then((value) {
         debugPrint("value ----> ${value.user}");
         user = value.user;
-
         if (user!.emailVerified) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(

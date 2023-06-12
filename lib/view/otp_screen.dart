@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
@@ -65,17 +67,24 @@ class _OtpScreenState extends State<OtpScreen> {
           ),
         ),
       ),
-      body: SafeArea(
+      body: Container(
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color(0x9e6ee383),
+              Color(0xFFC3E8CC),
+              Color(0xFFE4EFE5),
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.all(height / 30),
             child: Column(
               children: [
-                SizedBox(height: height / 25),
-                Image.asset(
-                  "assets/images/phoneNumber.png",
-                  height: height / 4,
-                ),
                 SizedBox(height: height / 30),
                 Text(
                   "Phone Verification",
@@ -100,7 +109,7 @@ class _OtpScreenState extends State<OtpScreen> {
                   onChanged: (value) {
                     code = value;
                     setState(() {});
-                    debugPrint("value is ---->  ${value}");
+                    debugPrint("value is ---->  $value");
                   },
                 ),
                 SizedBox(height: height / 45),
@@ -110,7 +119,7 @@ class _OtpScreenState extends State<OtpScreen> {
                   child: MainButton(
                     mainOnPress: () async {
                       try {
-                        debugPrint('code is ---->   ${code}');
+                        debugPrint('code is ---->   $code');
                         PhoneAuthCredential credential = PhoneAuthProvider.credential(
                           verificationId: PhoneNumberScreen.verify,
                           smsCode: code,

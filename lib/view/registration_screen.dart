@@ -133,6 +133,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   sufixIcon: IconButton(
                     icon: Icon(color: AppColors.DarkBlack, conformrmPassword ? Icons.visibility_off : Icons.visibility),
                     onPressed: () {
+                      //       backgroundColor: Colors.white,
                       setState(
                         () {
                           conformrmPassword = !conformrmPassword;
@@ -155,7 +156,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         //"Password is Not Match";
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
-                            backgroundColor: Colors.white,
                             elevation: 0,
                             content: Text(
                               "Not Match Password...",
@@ -219,13 +219,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         password: passwordController.text,
       )
           .then((value) {
-        debugPrint("User ------->> $user");
-
+        debugPrint("User ------->> ${value.user}");
         user = value.user;
-        debugPrint("Value --> ${value.user}");
         user!.sendEmailVerification();
-
-        Navigator.pop(context);
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (context) => LoginScreen(),
+            ),
+            (route) => false);
       });
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
