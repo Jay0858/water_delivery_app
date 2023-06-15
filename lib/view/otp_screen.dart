@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 import 'package:water_delivery_app/res/common/main_button.dart';
 import 'package:water_delivery_app/view/home_screen.dart';
-import 'package:water_delivery_app/view/mobile_number_screen.dart';
+import 'package:water_delivery_app/view/phone_number_screen.dart';
 
 class OtpScreen extends StatefulWidget {
   const OtpScreen({Key? key}) : super(key: key);
@@ -72,9 +72,9 @@ class _OtpScreenState extends State<OtpScreen> {
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color(0x9e6ee383),
-              Color(0xFFC3E8CC),
-              Color(0xFFE4EFE5),
+              Color(0xFF5DCCFC),
+              Color(0xA5A3DDF6),
+              Color(0x80D3E9F1),
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -90,7 +90,6 @@ class _OtpScreenState extends State<OtpScreen> {
                   "Phone Verification",
                   style: TextStyle(
                     fontSize: height / 25,
-                    fontFamily: "Avenir",
                     fontWeight: FontWeight.w800,
                   ),
                 ),
@@ -98,7 +97,6 @@ class _OtpScreenState extends State<OtpScreen> {
                   "We need to register your phone before getting started!",
                   style: TextStyle(
                     fontSize: 20,
-                    fontFamily: "Aveir",
                   ),
                   textAlign: TextAlign.center,
                 ),

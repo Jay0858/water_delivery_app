@@ -12,6 +12,9 @@ class AppColors {
   //welcome page
   static const DarkBlack = Color(0xFF2E2E2E);
 
+  //Login Screen
+  static const LightGrey = Color(0xFFBDBDBD);
+
   // home screen
   static const LightBlack = Color(0x1A212121);
 }

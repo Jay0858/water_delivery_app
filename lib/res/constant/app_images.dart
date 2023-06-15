@@ -22,4 +22,5 @@ class AppImages {
   //log in screen
   static const String Google = "${basePath}google.png";
   static const String Git = "${basePath}git.png";
+  static const String Call = "${basePath}call.png";
 }

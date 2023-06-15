@@ -5,8 +5,9 @@ import 'package:water_delivery_app/res/common/text_form_field.dart';
 import 'package:water_delivery_app/res/constant/app_colors.dart';
 import 'package:water_delivery_app/res/constant/app_images.dart';
 import 'package:water_delivery_app/res/constant/app_string.dart';
+import 'package:water_delivery_app/res/utils/utils.dart';
 import 'package:water_delivery_app/view/home_screen.dart';
-import 'package:water_delivery_app/view/mobile_number_screen.dart';
+import 'package:water_delivery_app/view/phone_number_screen.dart';
 import 'package:water_delivery_app/view/registration_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -23,6 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool password = false;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  Utils utils = Utils();
 
   @override
   Widget build(BuildContext context) {
@@ -113,27 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                // LoginButton(textName: AppString.GoogleWithLogin, createOnPress: createOnPress),
-                SizedBox(height: height / 7),
-                InkWell(
-                  child: Image.asset(AppImages.Google),
-                  onTap: () {},
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => PhoneNumberScreen(),
-                      ),
-                      (route) => false,
-                    );
-                  },
-                  child: Text(
-                    "LogIn With Mobile",
-                    style: TextStyle(color: AppColors.LightBlue),
-                  ),
-                ),
+                SizedBox(height: height / 20), // LoginButton(textName: AppString.GoogleWithLogin, createOnPress: createOnPress),
                 SizedBox(
                   width: double.infinity,
                   height: height / 13,
@@ -144,6 +126,57 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                   ),
                 ),
+                SizedBox(height: height / 25),
+                Row(
+                  children: [
+                    const Expanded(
+                      child: Divider(
+                        color: AppColors.LightGrey,
+                        thickness: 1,
+                        endIndent: 15,
+                      ),
+                    ),
+                    Text(
+                      AppString.OrLoginwith,
+                      style: TextStyle(
+                        color: AppColors.DarkGrey,
+                      ),
+                    ),
+                    const Expanded(
+                      child: Divider(
+                        color: AppColors.LightGrey,
+                        thickness: 1,
+                        indent: 15,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: height / 35),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    InkWell(
+                      child: Image.asset(AppImages.Call, height: height / 20),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PhoneNumberScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                    InkWell(
+                      child: Image.asset(AppImages.Google, height: height / 20),
+                      onTap: () {},
+                    ),
+                    InkWell(
+                      child: Image.asset(AppImages.Git, height: height / 14),
+                      onTap: () {},
+                    ),
+                  ],
+                ),
+                SizedBox(height: height / 60),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -157,12 +190,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     TextButton(
                       onPressed: () {
-                        Navigator.pushAndRemoveUntil(
+                        Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => RegistrationScreen(),
                           ),
-                          (route) => false,
                         );
                       },
                       child: Text(
@@ -175,7 +207,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ],
-                )
+                ),
               ],
             ),
           ),
@@ -195,20 +227,9 @@ class _LoginScreenState extends State<LoginScreen> {
         debugPrint("value ----> ${value.user}");
         user = value.user;
         if (user!.emailVerified) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              backgroundColor: Colors.white,
-              elevation: 0,
-              content: Text(
-                "Login Succsesfull",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500,
-                  fontFamily: "Avenir",
-                ),
-              ),
-            ),
+          utils.showSnackBar(
+            context,
+            message: "Login Successfully",
           );
           Navigator.pushAndRemoveUntil(
               context,

@@ -4,6 +4,7 @@ import 'package:water_delivery_app/res/common/account_button.dart';
 import 'package:water_delivery_app/res/common/text_form_field.dart';
 import 'package:water_delivery_app/res/constant/app_colors.dart';
 import 'package:water_delivery_app/res/constant/app_string.dart';
+import 'package:water_delivery_app/res/utils/utils.dart';
 import 'package:water_delivery_app/view/login_screen.dart';
 
 class RegistrationScreen extends StatefulWidget {
@@ -24,6 +25,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController conformPasswordController = TextEditingController();
+
+  Utils utils = Utils();
 
   @override
   Widget build(BuildContext context) {
@@ -154,18 +157,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         debugPrint("User ------->> $user");
                       } else {
                         //"Password is Not Match";
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            elevation: 0,
-                            content: Text(
-                              "Not Match Password...",
-                              style: TextStyle(
-                                color: Colors.red,
-                                fontSize: 15,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
+                        utils.showSnackBar(
+                          context,
+                          message: "Password is Not Match",
                         );
                       }
                     },
@@ -222,12 +216,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         debugPrint("User ------->> ${value.user}");
         user = value.user;
         user!.sendEmailVerification();
-        Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(
-              builder: (context) => LoginScreen(),
-            ),
-            (route) => false);
+        Navigator.pop(context);
       });
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {

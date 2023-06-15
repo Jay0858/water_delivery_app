@@ -42,6 +42,7 @@ class AppString {
   static const DontHaveanAccount = "Don’t  have an account?";
   static const SignUP = "Sign UP";
   static const GoogleWithLogin = "Google With Login";
+  static const OrLoginwith = "Or Login with";
 
   //home screen
   static const Welcome = "Welcome!";

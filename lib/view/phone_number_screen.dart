@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:water_delivery_app/res/common/main_button.dart';
+import 'package:water_delivery_app/res/constant/app_colors.dart';
 import 'package:water_delivery_app/view/otp_screen.dart';
 
 class PhoneNumberScreen extends StatefulWidget {
@@ -48,9 +49,9 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color(0x9e6ee383),
-              Color(0xFFC3E8CC),
-              Color(0xFFE4EFE5),
+              Color(0xFF5DCCFC),
+              Color(0xA5A3DDF6),
+              Color(0x80D3E9F1),
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -61,7 +62,7 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
             padding: EdgeInsets.all(height / 30),
             child: Column(
               children: [
-                SizedBox(height: height / 10),
+                SizedBox(height: height / 8),
                 Text(
                   "Phone Verification",
                   style: TextStyle(
@@ -82,7 +83,7 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                   decoration: BoxDecoration(
                       border: Border.all(
                         width: 1,
-                        color: const Color(0x91079810),
+                        color: AppColors.LightBlue,
                       ),
                       borderRadius: BorderRadius.circular(height / 100)),
                   child: Row(
@@ -126,7 +127,7 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                     ],
                   ),
                 ),
-                SizedBox(height: height / 45),
+                SizedBox(height: height / 15),
                 SizedBox(
                   width: double.infinity,
                   height: height / 15,
