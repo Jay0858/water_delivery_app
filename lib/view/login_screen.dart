@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:github_sign_in/github_sign_in.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:water_delivery_app/res/common/account_button.dart';
 import 'package:water_delivery_app/res/common/text_form_field.dart';
 import 'package:water_delivery_app/res/constant/app_colors.dart';
@@ -20,6 +22,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  UserCredential? userCredential;
   User? user;
   bool password = false;
   TextEditingController emailController = TextEditingController();
@@ -46,7 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   AppString.WelcomeBack,
                   style: TextStyle(
                     color: AppColors.LightBlue,
@@ -54,7 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                Text(
+                const Text(
                   AppString.PleaseFill,
                   style: TextStyle(
                     color: AppColors.DarkGrey,
@@ -63,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 SizedBox(height: height / 20),
-                Text(
+                const Text(
                   AppString.Email,
                   style: TextStyle(
                     color: AppColors.DarkGrey,
@@ -78,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   keyboardType: TextInputType.emailAddress,
                 ),
                 SizedBox(height: height / 40),
-                Text(
+                const Text(
                   AppString.Password,
                   style: TextStyle(
                     color: AppColors.DarkGrey,
@@ -104,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 SizedBox(height: height / 70),
-                Align(
+                const Align(
                   alignment: Alignment.centerRight,
                   child: Text(
                     AppString.ForgotPassword,
@@ -128,8 +131,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 SizedBox(height: height / 25),
                 Row(
-                  children: [
-                    const Expanded(
+                  children: const [
+                    Expanded(
                       child: Divider(
                         color: AppColors.LightGrey,
                         thickness: 1,
@@ -142,7 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: AppColors.DarkGrey,
                       ),
                     ),
-                    const Expanded(
+                    Expanded(
                       child: Divider(
                         color: AppColors.LightGrey,
                         thickness: 1,
@@ -161,14 +164,28 @@ class _LoginScreenState extends State<LoginScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => PhoneNumberScreen(),
+                            builder: (context) => const PhoneNumberScreen(),
                           ),
                         );
                       },
                     ),
                     InkWell(
                       child: Image.asset(AppImages.Google, height: height / 20),
-                      onTap: () {},
+                      onTap: () async {
+                        debugPrint("userdata =$user");
+
+                        signInWithGoogle();
+                        user = userCredential!.user;
+                        debugPrint("userdata =$user");
+
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const HomeScreen(),
+                          ),
+                          (route) => false,
+                        );
+                      },
                     ),
                     InkWell(
                       child: Image.asset(AppImages.Git, height: height / 14),
@@ -180,7 +197,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       AppString.DontHaveanAccount,
                       style: TextStyle(
                         fontSize: 14,
@@ -193,11 +210,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => RegistrationScreen(),
+                            builder: (context) => const RegistrationScreen(),
                           ),
                         );
                       },
-                      child: Text(
+                      child: const Text(
                         AppString.SignUP,
                         style: TextStyle(
                           fontSize: 14,
@@ -262,5 +279,40 @@ class _LoginScreenState extends State<LoginScreen> {
         debugPrint("wrong password provided for that user.");
       }
     }
+  }
+
+  Future<void> signInWithGoogle() async {
+    // Trigger the authentication flow
+
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    debugPrint("googleUser----->$googleUser");
+
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    // Once signed in, return the UserCredential
+    userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+
+    user = userCredential!.user;
+    debugPrint("User Data ------->>  $user");
+    utils.showSnackBar(context, message: "Login Successfully.");
+  }
+
+  Future<UserCredential> signInWithGitHub(context) async {
+    final GitHubSignIn gitHubSignIn = GitHubSignIn(
+      clientId: "2c800db50d40bad491ba",
+      clientSecret: "60c1cc007185ed40a46af38c7209036e9185943b",
+      redirectUrl: 'https://fir-app-cc404.firebaseapp.com/__/auth/handler',
+    );
+    final result = await gitHubSignIn.signIn(context);
+    final githubAuthCredential = GithubAuthProvider.credential(result.token!);
+
+    return await FirebaseAuth.instance.signInWithCredential(githubAuthCredential);
   }
 }

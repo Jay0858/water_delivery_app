@@ -12,7 +12,12 @@
           "package_name": "com.app.firebase_demo_five"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "30766661181-c94ip61ah1c2qcnjd6vgijthbu2h5ng3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyD8S84y0_341RgswPCIo4kBCT7gbjXnGT0"
@@ -20,7 +25,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "30766661181-c94ip61ah1c2qcnjd6vgijthbu2h5ng3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     },
@@ -31,7 +41,12 @@
           "package_name": "com.app.firebase_demo_four"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "30766661181-c94ip61ah1c2qcnjd6vgijthbu2h5ng3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyD8S84y0_341RgswPCIo4kBCT7gbjXnGT0"
@@ -39,7 +54,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "30766661181-c94ip61ah1c2qcnjd6vgijthbu2h5ng3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     },
@@ -50,7 +70,12 @@
           "package_name": "com.app.firebase_demo_one"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "30766661181-c94ip61ah1c2qcnjd6vgijthbu2h5ng3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyD8S84y0_341RgswPCIo4kBCT7gbjXnGT0"
@@ -58,7 +83,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "30766661181-c94ip61ah1c2qcnjd6vgijthbu2h5ng3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     },
@@ -69,7 +99,12 @@
           "package_name": "com.app.firebase_demo_three"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "30766661181-c94ip61ah1c2qcnjd6vgijthbu2h5ng3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyD8S84y0_341RgswPCIo4kBCT7gbjXnGT0"
@@ -77,7 +112,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "30766661181-c94ip61ah1c2qcnjd6vgijthbu2h5ng3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     },
@@ -88,7 +128,20 @@
           "package_name": "com.app.water_delivery_app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "30766661181-eu6n3qe927n5ov4r63no3akik5muv3t8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.water_delivery_app",
+            "certificate_hash": "ca5650341c795714c2d16d68009cb264723d23f7"
+          }
+        },
+        {
+          "client_id": "30766661181-c94ip61ah1c2qcnjd6vgijthbu2h5ng3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyD8S84y0_341RgswPCIo4kBCT7gbjXnGT0"
@@ -96,7 +149,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "30766661181-c94ip61ah1c2qcnjd6vgijthbu2h5ng3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     },
@@ -107,7 +165,12 @@
           "package_name": "com.example.firebase_demo_two"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "30766661181-c94ip61ah1c2qcnjd6vgijthbu2h5ng3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyD8S84y0_341RgswPCIo4kBCT7gbjXnGT0"
@@ -115,7 +178,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "30766661181-c94ip61ah1c2qcnjd6vgijthbu2h5ng3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

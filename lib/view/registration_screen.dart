@@ -16,10 +16,10 @@ class RegistrationScreen extends StatefulWidget {
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+
   User? user;
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
   bool password = false;
-
   bool conformrmPassword = true;
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -216,7 +216,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         debugPrint("User ------->> ${value.user}");
         user = value.user;
         user!.sendEmailVerification();
-        Navigator.pop(context);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => LoginScreen(),
+          ),
+        );
       });
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
