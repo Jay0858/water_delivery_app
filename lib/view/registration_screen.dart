@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:water_delivery_app/res/common/account_button.dart';
@@ -21,6 +22,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
   bool password = false;
   bool conformrmPassword = true;
+  FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -162,6 +164,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           message: "Password is Not Match",
                         );
                       }
+                      creatUser();
+                      debugPrint("User ------->> $user");
                     },
                   ),
                 ),
@@ -234,5 +238,21 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     } catch (e) {
       debugPrint("Error --->  $e");
     }
+  }
+  createUserData() {
+    CollectionReference users = firebaseFirestore.collection('user');
+    users.doc(user!.uid).set(
+      {
+        'id': user!.uid,
+        'name': nameController.text,
+        'email': user!.email,
+      },
+    ).then((value) {
+      debugPrint("User added -------> $users ");
+      utils.showSnackBar(context, message: "SignUp Successfully, please verify Your Email.");
+      Navigator.pop(context);
+    }).catchError((error) {
+      debugPrint("Failed to add user : $error");
+    });
   }
 }

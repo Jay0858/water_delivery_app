@@ -46,8 +46,6 @@ class _OnboadingScreenState extends State<OnboadingScreen> {
             children: [
               Expanded(
                 child: Container(
-                  color: AppColors.white,
-                  height: height / 1.5,
                   child: PageView(
                       onPageChanged: (value) {
                         selectedIndex = value;

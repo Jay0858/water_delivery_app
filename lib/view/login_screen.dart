@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:github_sign_in/github_sign_in.dart';
@@ -22,9 +23,12 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+  // UserModel userModel = UserModel();
   UserCredential? userCredential;
   User? user;
   bool password = false;
+  bool isLoading = false;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   Utils utils = Utils();
@@ -189,7 +193,22 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     InkWell(
                       child: Image.asset(AppImages.Git, height: height / 14),
-                      onTap: () {},
+                      onTap: () async {
+                        setState(() {
+                          isLoading = false;
+                        });
+                        try {
+                          await signInWithGitHub(context);
+                        } on FirebaseAuthException catch (e) {
+                          debugPrint(e.message);
+                        }
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HomeScreen(),
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -306,9 +325,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<UserCredential> signInWithGitHub(context) async {
     final GitHubSignIn gitHubSignIn = GitHubSignIn(
-      clientId: "2c800db50d40bad491ba",
-      clientSecret: "60c1cc007185ed40a46af38c7209036e9185943b",
-      redirectUrl: 'https://fir-app-cc404.firebaseapp.com/__/auth/handler',
+      clientId: "99edee821dcb60fef86e",
+      clientSecret: "8bf4c272c4c25ae68a0abad45e75ef89b226cfa3",
+      redirectUrl: 'https://fir-demo-a7f7b.firebaseapp.com/__/auth/handler',
     );
     final result = await gitHubSignIn.signIn(context);
     final githubAuthCredential = GithubAuthProvider.credential(result.token!);
