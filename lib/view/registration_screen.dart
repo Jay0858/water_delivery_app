@@ -220,12 +220,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         debugPrint("User ------->> ${value.user}");
         user = value.user;
         user!.sendEmailVerification();
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => LoginScreen(),
-          ),
-        );
+        createUserData();
       });
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -239,6 +234,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       debugPrint("Error --->  $e");
     }
   }
+
   createUserData() {
     CollectionReference users = firebaseFirestore.collection('user');
     users.doc(user!.uid).set(

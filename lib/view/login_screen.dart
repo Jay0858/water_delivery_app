@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:github_sign_in/github_sign_in.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:water_delivery_app/model/user_model.dart';
 import 'package:water_delivery_app/res/common/account_button.dart';
 import 'package:water_delivery_app/res/common/text_form_field.dart';
 import 'package:water_delivery_app/res/constant/app_colors.dart';
@@ -21,10 +24,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-  FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-  // UserModel userModel = UserModel();
+  FirebaseFirestore firebaseFireStore = FirebaseFirestore.instance;
+  UserModel userModel = UserModel();
   UserCredential? userCredential;
   User? user;
   bool password = false;
@@ -48,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: width / 20),
           child: Form(
-            key: formkey,
+            key: formKey,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -333,5 +336,21 @@ class _LoginScreenState extends State<LoginScreen> {
     final githubAuthCredential = GithubAuthProvider.credential(result.token!);
 
     return await FirebaseAuth.instance.signInWithCredential(githubAuthCredential);
+  }
+
+  getUser() {
+    CollectionReference users = firebaseFireStore.collection('user');
+    users.doc(user!.uid).get().then((value) {
+      debugPrint("User Added -------- > ${jsonEncode(value.data())} ");
+      userModel = userModelFromJson(jsonEncode(value.data()));
+      utils.showSnackBar(context, message: "LogIn SuccessFully");
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const HomeScreen(),
+          ));
+    }).catchError((error) {
+      debugPrint("Failed to Add User : $error");
+    });
   }
 }
