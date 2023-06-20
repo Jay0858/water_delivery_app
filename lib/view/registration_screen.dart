@@ -246,7 +246,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     ).then((value) {
       debugPrint("User added -------> $users ");
       utils.showSnackBar(context, message: "SignUp Successfully, please verify Your Email.");
-      Navigator.pop(context);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => LoginScreen(),
+        ),
+      );
     }).catchError((error) {
       debugPrint("Failed to add user : $error");
     });
